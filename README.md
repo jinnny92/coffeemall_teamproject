@@ -55,4 +55,15 @@
 
 https://user-images.githubusercontent.com/98077177/190084249-f6d361a4-3561-468b-a575-59f5088684e0.mp4
 
+## 회원가입
+
+
+
+https://user-images.githubusercontent.com/98077177/190135289-2c584c80-bf36-409f-bd28-ac7d49687be3.mp4
+
+
+## 소셜로그인
+
+
+https://user-images.githubusercontent.com/98077177/190135573-6279f850-94e4-4d5e-8743-ebb35b7dbc8d.mp4
 
