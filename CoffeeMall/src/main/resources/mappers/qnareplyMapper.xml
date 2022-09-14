@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.dw.qnareply">
+
+	<delete id="deleteByQno">
+		DELETE FROM tbl_qna_reply WHERE qno = #{qno}
+
+	</delete>
+
+	<update id="update">
+		UPDATE tbl_qna_reply
+		SET
+		replyer=#{replyer},
+		replyText=#{replyText}
+		WHERE rno = #{rno}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM tbl_qna_reply WHERE rno = #{rno}
+	</delete>
+
+	<select id="list" resultType="QnAReplyDTO">
+		SELECT * FROM tbl_qna_reply WHERE
+		qno=#{qno} ORDER BY rno DESC
+	</select>
+
+	<select id="getAmount" resultType="integer">
+		SELECT COUNT(rno) FROM
+		tbl_qna_reply WHERE qno = #{qno}
+	</select>
+
+	<insert id="insert">
+		INSERT INTO tbl_qna_reply
+		(rno, qno, replyer, replyText)
+		VALUES
+		(seq_reply_rno.NEXTVAL, #{qno},
+		#{replyer}, #{replyText})
+	</insert>
+
+</mapper>

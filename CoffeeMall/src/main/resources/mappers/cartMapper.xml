@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.dw.cart">
+	
+	<insert id="addcart">
+		INSERT INTO tbl_cart(cartId, userId, pno, cartCount) VALUES (seq_cartId.NEXTVAL, #{userId}, #{pno}, #{cartCount}) 
+	</insert>
+
+	<delete id="deleteCart">
+		DELETE FROM tbl_cart WHERE cartId = #{cartId}
+	</delete>
+	
+	
+	<update id="updateCount">
+		UPDATE tbl_cart SET cartCount = #{cartCount} WHERE cartId = #{cartId}
+	</update>
+	
+	
+	
+	<select id="getCart" resultType="CartDTO">
+		SELECT a.cartId, a.userId, a.pno, a.cartCount, b.pName, b.pPrice
+		FROM tbl_cart a LEFT OUTER JOIN product b ON a.pno = b.pno
+		WHERE userId = #{userId}	
+	</select>
+	
+	
+	<select id="checkCart" resultType="CartDTO">
+		SELECT * FROM tbl_cart 
+		WHERE userId = #{userId} AND pno = #{pno}
+	</select>
+	
+	<delete id="deleteOrderCart">
+		DELETE FROM tbl_cart WHERE userId = #{userId} and pno = #{pno}
+	</delete>
+	
+	<select id="read" resultType = "CartDTO">
+
+
+	SELECT * FROM tbl_cart WHERE userId = #{userId} and pno = #{pno}
+
+</select>
+	
+	
+
+
+</mapper>
