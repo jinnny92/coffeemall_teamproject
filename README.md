@@ -1,4 +1,4 @@
-# CoffeBox☕
+# CoffeeBox☕
 <h3>커피에 진심인 사람들 CoffeBox입니다</h3>
 <h5>"맛있는 커피는 천 번의 키스보다 황홀하다" 
 - Johann Sebastian Bach</h5>
