@@ -49,3 +49,10 @@
 <li>Q&A 댓글 기능 및 페이징처리 구현</li>
 <li>상품 수정 및 삭제 구현</li>
 </ul>
+
+## 메인
+
+
+https://user-images.githubusercontent.com/98077177/190084249-f6d361a4-3561-468b-a575-59f5088684e0.mp4
+
+
