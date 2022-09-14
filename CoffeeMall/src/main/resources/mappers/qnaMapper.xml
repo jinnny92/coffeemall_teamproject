@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.dw.qna">
+
+	<sql id="sql_where_part">
+		<if test="criteria != null">
+			<if test="criteria == 'userid'.toString()">
+				WHERE UPPER(userid) LIKE '%'||UPPER(#{keyword})||'%'
+			</if>
+
+			<if test="criteria == 'qTitle'.toString()">
+				WHERE UPPER(qTitle) LIKE '%'||UPPER(#{keyword})||'%'
+			</if>
+
+			<if test="criteria == 'qContent'.toString()">
+				WHERE LOWER(qContent) LIKE '%'||LOWER(#{keyword})||'%'
+			</if>
+		</if>
+	</sql>
+
+	<select id="search" resultType="QnaDTO">
+		SELECT * FROM tbl_qna
+		<include refid="sql_where_part"></include>
+		ORDER BY qno DESC
+	</select>
+
+	<select id="getAmountSearch" resultType="integer">
+		SELECT COUNT(qno) FROM tbl_qna
+		<include refid="sql_where_part"></include>
+	</select>
+
+
+	<select id="getAmountQna" resultType="integer">
+		SELECT COUNT(qno) FROM tbl_qna
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO tbl_qna(qno, userid, qTitle, qContent, qWriteDay,
+		qUpdateDay)
+		VALUES(seq_qna_qno.NEXTVAL, #{userid}, #{qTitle},
+		#{qContent}, SYSDATE, SYSDATE)
+
+		<selectKey keyProperty="qno" resultType="integer"
+			order="AFTER">
+			SELECT seq_qna_qno.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+
+	<select id="list" resultType="QnaDTO">
+		SELECT * FROM tbl_qna ORDER BY qno
+		DESC
+	</select>
+
+	<select id="read" resultType="QnaDTO">
+		SELECT * FROM tbl_qna WHERE qno =
+		#{qno}
+	</select>
+
+	<update id="increaseReadCnt">
+	UPDATE tbl_qna SET readCnt = readCnt + 1 WHERE qno = #{qno}
+	</update>	
+
+
+	<select id="updateUI" resultType="QnaDTO">
+		SELECT * FROM tbl_qna WHERE qno	= #{qno}
+	</select>
+
+	<update id="update">
+		UPDATE tbl_qna SET qTitle=#{qTitle},
+		userid=#{userid}, qContent=#{qContent}, qUpdateDay=SysDate WHERE qno = #{qno}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM tbl_qna WHERE qno = #{qno}
+	</delete>
+
+</mapper>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.dw.notice">
+
+	<sql id="sql_where_part">
+		<if test="criteria != null">
+			<if test="criteria == 'userId'.toString()">
+				WHERE UPPER(userId) LIKE '%'||UPPER(#{keyword})||'%'
+			</if>
+			
+			<if test="criteria == 'nTitle'.toString()">
+				WHERE UPPER(nTitle) LIKE '%'||UPPER(#{keyword})||'%'
+			</if>
+			
+			<if test="criteria == 'nContent'.toString()">
+				WHERE LOWER(nContent) LIKE  '%'||LOWER(#{keyword})||'%'
+			</if>
+		</if>
+	</sql>
+
+	<select id="search" resultType="NoticeDTO">
+		SELECT * FROM tbl_notice 
+		<include refid="sql_where_part"></include>
+		ORDER BY nno DESC
+	</select>
+
+	<select id="getAmountSearch" resultType="integer">
+		SELECT COUNT(nno) FROM tbl_notice 
+		<include refid="sql_where_part"></include>
+	</select>
+
+
+	<select id="getAmountNotice" resultType="integer">
+		SELECT COUNT(nno) FROM tbl_notice
+	</select>
+
+	<update id="increaseReadCnt">
+	UPDATE tbl_notice SET readCnt = readCnt + 1 WHERE nno = #{nno}
+	</update>	
+
+	<select id="list" resultType="NoticeDTO">
+		SELECT * FROM tbl_notice ORDER BY nno DESC
+	</select>
+
+	<insert id="insert">
+		INSERT INTO tbl_notice (nno, userId, nTitle,nContent) VALUES (seq_tbl_notice_nno.NEXTVAL, #{userId},#{nTitle},#{nContent})
+		<selectKey keyProperty="nno" resultType="Integer" order="AFTER">
+			SELECT seq_tbl_notice_nno.CURRVAL FROM DUAL
+		</selectKey>
+		
+	</insert>
+	<select id="read" resultType="NoticeDTO">
+		SELECT * FROM tbl_notice WHERE nno =
+		#{nno}
+	</select>
+
+	<delete id="delete">
+		DELETE FROM tbl_notice WHERE nno =#{nno}
+	</delete>
+	
+	<select id="updateUI" resultType="NoticeDTO">
+		SELECT * FROM tbl_notice WHERE nno = #{nno}
+	</select>
+
+	<update id="update">
+		UPDATE tbl_notice SET nTitle=#{nTitle}, userId=#{userId}, nContent=#{nContent}, nUpdatedate=SysDate WHERE nno = #{nno} 
+	</update>
+
+</mapper>
