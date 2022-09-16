@@ -51,7 +51,7 @@ footer p span {
     	<section></section>
         <footer>
           <p>
-              <span>대표 : COFFEEMALL</span><br/>
+              <span>대표 : CoffeeBox</span><br/>
               <span>이메일 : COFFEEMALL@gmail.com</span><br/>
               <span>Copyright 2022. COFFEEMALL. All Rights Reserved.</span>
           </p>

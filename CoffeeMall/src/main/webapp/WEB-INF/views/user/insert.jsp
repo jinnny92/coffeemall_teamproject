@@ -109,9 +109,9 @@ body {
          </h2>
       </div>
       <div class="card-body">
-         <form action="/user/insert" class="form-signin" method="POST">
-            <h5 align="center" class="nav-link text-uppercase font-weight-bold">태주'S
-               COFFEEMALL 회원가입</h5>
+         <form action="/user/insert" class="form-signin" method="POST" name="mForm">
+            <h5 align="center" class="nav-link text-uppercase font-weight-bold">
+               CoffeBox 회원가입</h5>
             <br>
 
             <p class="text">아이디</p>
@@ -297,7 +297,7 @@ body {
    }
       
   
-   $('#pw2ch').text('6~20자의 영문 소문자, 숫자만 사용가능합니다')
+   $('#pw2ch').text('')
    $('#pw2ch').css('color', 'red') 
     $("#pw").focusout(function(){
         if($('#pw').val() == ""){
@@ -345,6 +345,63 @@ body {
        }
    });
    
+   function submit() {
+		let userId = document.getElementById("userId");
+		if (userId.value == "") {
+			alert("아이디가 입력되지 않았습니다!");
+			userId.focus();
+			return false;
+		}
+		
+		
+		let uPassword = document.getElementById("uPassword");
+		if (uPassword.value == "") {
+			alert("비밀번호가 입력되지 않았습니다!");
+			uPassword.focus();
+			return false;
+		}
+		
+		
+		let uName = document.getElementById("uName");
+		if (uName.value == "") {
+			alert("이름이 입력되지 않았습니다!");
+			uName.focus();
+			return false;
+		}
+		
+		
+		let uNickname = document.getElementById("uNickname");
+		if (uNickname.value == "") {
+			alert("닉네임이 입력되지 않았습니다!");
+			uNickname.focus();
+			return false;
+		}
+		
+		
+		let uBirth = document.getElementById("uBirth");
+		if (uBirth.value == "") {
+			alert("생년월일이 입력되지 않았습니다!");
+			uBirth.focus();
+			return false;
+		}
+		
+		let uPhone = document.getElementById("uPhone");
+		if (uPhone.value == "") {
+			alert("전화번호가 입력되지 않았습니다!");
+			uPhone.focus();
+			return false;
+		}
+
+		let uEmail = document.getElementById("uEmail");
+		if (uEmail.value == "") {
+			alert("이메일이 입력되지 않았습니다!");
+			uEmail.focus();
+			return false;
+		}
+		
+		alert("축하합니다! 회원가입이 정상적으로 완료되었습니다");
+		document.getElementById("mForm").submit();
+	}
 
 </script>
 </body>

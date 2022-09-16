@@ -66,7 +66,7 @@
 
 <br>
 <br>
-<h3>커피에 진심인 사람들 'CoffeBox'입니다</h3>
+<h3>커피에 진심인 사람들 'CoffeeBox'입니다</h3>
 <br>
 <h4>"맛있는 커피는 천 번의 키스보다 황홀하다"<br>
 &nbsp;&nbsp;&nbsp; - Johann Sebastian Bach</h4>

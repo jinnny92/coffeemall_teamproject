@@ -121,7 +121,7 @@ nav .fa.fa-angle-down {
 	<nav class="navbar navbar-expand-lg fixed-top py-3">
 		<div class="container">
 			<a href="/" class="navbar-brand text-uppercase font-weight-bold">
-				COFFEEMALL</a>
+				CoffeeBox</a>
 			<button type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
